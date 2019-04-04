@@ -48,6 +48,7 @@ int main() {
         scanf("%d", &key);
 
         encryptRK(message + key) %26;
+        
     }
 
 

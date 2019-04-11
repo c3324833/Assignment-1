@@ -52,13 +52,16 @@ int main() {
         printf("Enter rotation key: ");
         scanf("%d", &key);
         
-        char encrypted = (((character - 65) + 390) + (key % 26) % 26) + 65;
+        char encrypted = ((character + (key % 26)) % 26);
+        //char encrypted = (int) character + 1;
         
         for(i = 0; i < 100; i++ ){
         message[i] = encrypted;
-        printf("%c", message[i]);
+        printf("%s", message);
         }
         
         return encrypted;
+    }
+    
 
  

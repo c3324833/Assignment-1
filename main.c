@@ -4,7 +4,9 @@ char shift(char character, int key);
 char encryptRK(char character, int key); // Function prototype for encypting a rotation cipher with key
 
 int main() {
-
+    char character;
+    int key;
+    
     printf("Please select an option: \n");\
     printf("a) Encrypt a message using rotation cipher with key given\n");
     printf("b) Decrypt a message using rotation cipher with key given\n");
@@ -18,10 +20,10 @@ int main() {
 
     while(c < 'a' || c > 'f'){
         switch(c){
-            case 'a': shift();
-                      encryptRK();
+            case 'a': shift(character, key);
+                      encryptRK(character, key);
                 break;
-            case 'b': decryptRK();
+            /*case 'b': decryptRK();
                 break;
             case 'c': encryptSK();
                 break;
@@ -30,34 +32,38 @@ int main() {
             case 'e': decryptR();
                 break;
             case 'f': decryptS();
-                break;
+                break;*/ 
             default: printf("Unknown option %c\nPlease enter a, b, c, d, e or f\n");
         }
     }
     return 0;
+}
+
 
     /***********************************************************************************/
     // Case 'a': Function for encryptRK() by first doing the function for shifting 
     
     char shift(char character, int key){
-        char shifted = (((character - 65) + 390) + (key % 26)) % 26) + 65;
+        char shifted = (((character - 65) + 390) + (key % 26) % 26) + 65;
         return shifted;
     }
     
-    char encryptRK(char character, int key); // Function prototype
-       
+    char encryptRK(char character, int key){
+    
        char message[100]; 
        int i; // character counter 
         
         printf("Enter message to encrypt: ");
-        scanf("%s"\ns, message);
+        scanf("%s\ns", message);
 
         printf("Enter rotation key: ");
         scanf("%d", &key);
         
-    for(i = 0; i < message; i++ ){
-        printf("%s", message[i]);
-        
+    for(i = 0; i < 100; i++ ){
+        printf("%c", message[i]);
+        }
+    return character;
+    
     }
 
 

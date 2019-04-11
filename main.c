@@ -40,25 +40,23 @@ int main() {
     // Case 'a': Function for encryptRK() by first doing the function for shifting 
     
     char shift(char character, int key){
-        char shifted = (((character-65) + 390) + (key % 26)) % 26) + 65;
+        char shifted = (((character - 65) + 390) + (key % 26)) % 26) + 65;
         return shifted;
     }
     
     char encryptRK(char character, int key); // Function prototype
-        char message[100]; 
+       
+       char message[100]; 
+       int i; // character counter 
         
-         printf("Enter message to encrypt: ");
-        scanf("%s", message);
+        printf("Enter message to encrypt: ");
+        scanf("%s"\ns, message);
 
         printf("Enter rotation key: ");
         scanf("%d", &key);
         
-    char encryptRK(char character [], int key)
     for(i = 0; i < message; i++ ){
-
-       
-
-     
+        printf("%s", message[i]);
         
     }
 

@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-char shift(char character, int key);
 char encryptRK(char character, int key); // Function prototype for encypting a rotation cipher with key
 
 int main() {
@@ -20,8 +19,7 @@ int main() {
 
     while(c < 'a' || c > 'f'){
         switch(c){
-            case 'a': shift(character, key);
-                      encryptRK(character, key);
+            case 'a': encryptRK(character, key);
                 break;
             /*case 'b': decryptRK();
                 break;
@@ -41,30 +39,26 @@ int main() {
 
 
     /***********************************************************************************/
-    // Case 'a': Function for encryptRK() by first doing the function for shifting 
-    
-    char shift(char character, int key){
-        char shifted = (((character - 65) + 390) + (key % 26) % 26) + 65;
-        return shifted;
-    }
+    // Case 'a': Function for encryptRK() 
     
     char encryptRK(char character, int key){
     
-       char message[100]; 
+       char message[100] = {0}; 
        int i; // character counter 
         
         printf("Enter message to encrypt: ");
-        scanf("%s\ns", message);
+        scanf("%s", message);
 
         printf("Enter rotation key: ");
         scanf("%d", &key);
         
-    for(i = 0; i < 100; i++ ){
+        char encrypted = (((character - 65) + 390) + (key % 26) % 26) + 65;
+        
+        for(i = 0; i < 100; i++ ){
+        message[i] = encrypted;
         printf("%c", message[i]);
         }
-    return character;
-    
-    }
-
+        
+        return encrypted;
 
  

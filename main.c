@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+char shift(char character, int key);
+char encryptRK(char character, int key); // Function prototype for encypting a rotation cipher with key
+
 int main() {
 
     printf("Please select an option: \n");\
@@ -15,7 +18,8 @@ int main() {
 
     while(c < 'a' || c > 'f'){
         switch(c){
-            case 'a': encryptRK();
+            case 'a': shift();
+                      encryptRK();
                 break;
             case 'b': decryptRK();
                 break;
@@ -30,30 +34,33 @@ int main() {
             default: printf("Unknown option %c\nPlease enter a, b, c, d, e or f\n");
         }
     }
+    return 0;
 
-    // Case 'a': Function for encryptRK()
-    void encryptRK(char message[], int key); // Function prototype
-
-        char message[25];
-        int key;
-        int i; // letter counter
+    /***********************************************************************************/
+    // Case 'a': Function for encryptRK() by first doing the function for shifting 
+    
+    char shift(char character, int key){
+        char shifted = (((character-65) + 390) + (key % 26)) % 26) + 65;
+        return shifted;
+    }
+    
+    char encryptRK(char character, int key); // Function prototype
+        char message[100]; 
         
-    void encryptRK(char message [], int key)
-    for(i = 0; i < message; ++i ){
-
-        printf("Enter message to encrypt: ");
-        scanf("%c", message);
+         printf("Enter message to encrypt: ");
+        scanf("%s", message);
 
         printf("Enter rotation key: ");
         scanf("%d", &key);
+        
+    char encryptRK(char character [], int key)
+    for(i = 0; i < message; i++ ){
 
-        encryptRK(message + key) %26;
+       
+
+     
         
     }
 
 
-     
-
-
-
-  return 0;
+ 

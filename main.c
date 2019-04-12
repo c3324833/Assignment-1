@@ -41,27 +41,45 @@ int main() {
     /***********************************************************************************/
     // Case 'a': Function for encryptRK() 
     
-    char encryptRK(char character, int key){
-    
-       char message[100] = {0}; 
-       int i; // character counter 
+        char encryptRK(char character, int key){
         
-        printf("Enter message to encrypt: ");
-        scanf("%s", message);
-
-        printf("Enter rotation key: ");
-        scanf("%d", &key);
-        
-        char encrypted = ((character + (key % 26)) % 26);
-        //char encrypted = (int) character + 1;
-        
-        for(i = 0; i < 100; i++ ){
-        message[i] = encrypted;
-        printf("%s", message);
-        }
-        
-        return encrypted;
-    }
+	char message[100];
+	int i;
+	
+	printf("Enter a message to encrypt: ");
+	scanf("%s", message);
+	
+	printf("Enter rotation key: ");
+	scanf("%d", &key);
+	
+	for(i = 0; message[i] != '\0'; ++i){
+		character = message[i];
+		
+		if(character >= 'a' && character <= 'z'){
+		    character = character - 32;
+		    character = character + key;
+			
+			if(character > 'z'){
+				character = character - 'z' + 'a' - 1;
+			}
+			
+			message[i] = character;
+		}
+		else if(character >= 'A' && character <= 'Z'){
+			character = (character + key);
+			
+			if(character > 'Z'){
+				character = character - 'Z' + 'A' - 1;
+			}
+			
+			message[i] = character;
+		}
+	}
+	
+	//printf("Encrypted message: %s", message);
+	
+	return message;
+}
     
 
  

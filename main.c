@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 char encryptRK(char character, int key); // Function prototype for encypting a rotation cipher with key
+char decryptRK(char charcter, int key); // Function prototype for decrypting a rotation cipher with key
 
 int main() {
     char character;
@@ -21,7 +22,7 @@ int main() {
         switch(c){
             case 'a': encryptRK(character, key);
                 break;
-            case 'b': decryptRK();
+            case 'b': decryptRK(character, key);
                 break;
             /*case 'c': encryptSK();
                 break;
@@ -60,7 +61,7 @@ int main() {
 		    character = character + key;
 			
 			if(character > 'z'){
-				character = character - 'z' + 'a' - 1;
+				character = character - 26;
 			}
 			
 			message[i] = character;
@@ -69,7 +70,7 @@ int main() {
 			character = (character + key);
 			
 			if(character > 'Z'){
-				character = character - 'Z' + 'A' - 1;
+				character = character - 26;
 			}
 			
 			message[i] = character;
@@ -101,8 +102,8 @@ int main() {
 		    character = character - 32;
 		    character = character - key;
 			
-			if(character > 'z'){
-				character = character - 'z' + 'a' - 1;
+			if(character < 'a'){
+				character = character + 26;
 			}
 			
 			message[i] = character;
@@ -110,8 +111,8 @@ int main() {
 		else if(character >= 'A' && character <= 'Z'){
 			character = (character - key);
 			
-			if(character > 'Z'){
-				character = character - 'Z' + 'A' - 1;
+			if(character < 'A'){
+				character = character + 26;
 			}
 			
 			message[i] = character;
@@ -123,5 +124,7 @@ int main() {
 }   
 
 /******************************************************************************************/
-// Case 'c': Function for 
+// Case 'c': Function for encryptSK()
+
+
  

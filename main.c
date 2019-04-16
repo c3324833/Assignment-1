@@ -17,20 +17,20 @@ int main() {
     char c;
     scanf("%c", &c);
 
-    while(c < 'a' || c > 'f'){
+    while(c > 'a' || c < 'f'){
         switch(c){
             case 'a': encryptRK(character, key);
                 break;
-            /*case 'b': decryptRK();
+            case 'b': decryptRK();
                 break;
-            case 'c': encryptSK();
+            /*case 'c': encryptSK();
                 break;
             case 'd': decryptSK();
                 break;
             case 'e': decryptR();
                 break;
             case 'f': decryptS();
-                break;*/ 
+                break;*/
             default: printf("Unknown option %c\nPlease enter a, b, c, d, e or f\n");
         }
     }
@@ -41,7 +41,7 @@ int main() {
     /***********************************************************************************/
     // Case 'a': Function for encryptRK() 
     
-        char encryptRK(char character, int key){
+    char encryptRK(char character, int key){
         
 	char message[100];
 	int i;
@@ -76,10 +76,52 @@ int main() {
 		}
 	}
 	
-	//printf("Encrypted message: %s", message);
-	
-	return message;
+	printf("Encrypted message: %s", message);
+	//return message[i];
 }
-    
 
+/**********************************************************************************************/
+// Case 'b': Function for decryptRK()
+
+ char decryptRK(char character, int key){
+        
+	char message[100];
+	int i;
+	
+	printf("Enter a message to decrypt: ");
+	scanf("%s", message);
+	
+	printf("Enter rotation key: ");
+	scanf("%d", &key);
+	
+	for(i = 0; message[i] != '\0'; ++i){
+		character = message[i];
+		
+		if(character >= 'a' && character <= 'z'){
+		    character = character - 32;
+		    character = character - key;
+			
+			if(character > 'z'){
+				character = character - 'z' + 'a' - 1;
+			}
+			
+			message[i] = character;
+		}
+		else if(character >= 'A' && character <= 'Z'){
+			character = (character - key);
+			
+			if(character > 'Z'){
+				character = character - 'Z' + 'A' - 1;
+			}
+			
+			message[i] = character;
+		}
+	}
+	
+	printf("Decrypted message: %s", message);
+	//return message[i];
+}   
+
+/******************************************************************************************/
+// Case 'c': Function for 
  

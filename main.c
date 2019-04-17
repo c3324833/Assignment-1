@@ -85,7 +85,7 @@ int main() {
 /**********************************************************************************************/
 // Case 'b': Function for decryptRK()
 
- char decryptRK(char character, int key){
+char decryptRK(char character, int key){
         
 	char message[100];
 	int i;
@@ -103,14 +103,11 @@ int main() {
 		    character = character - 32;
 		    character = character - key;
 			
-			if(character < 'a' && character != 32){
+			if(character < 'A'){
 				character = character + 26;
-		      }
+	      }
 
-		if(character == ' '){
-			    character = 32;
-			}
-	}
+	   }
 
 			
 		else if(character >= 'A' && character <= 'Z'){
@@ -119,9 +116,9 @@ int main() {
 			if(character < 'A'){
 				character = character + 26;
 			}
-			
-			message[i] = character;
 		}
+		
+		message[i] = character;
 }
 
 	printf("Decrypted message: %s", message);

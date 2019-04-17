@@ -48,38 +48,39 @@ int main() {
 	int i;
 	
 	printf("Enter a message to encrypt: ");
-	scanf("%s", message);
+	scanf("%[^\n]s", message);
 	
 	printf("Enter rotation key: ");
-	scanf("%d", &key);
+	scanf("%d", &key); 
 	
 	for(i = 0; message[i] != '\0'; ++i){
 		character = message[i];
-		
+	    
 		if(character >= 'a' && character <= 'z'){
 		    character = character - 32;
 		    character = character + key;
 			
-			if(character > 'z'){
-				character = character - 26;
-			}
-			
-			message[i] = character;
-		}
-		else if(character >= 'A' && character <= 'Z'){
-			character = (character + key);
-			
 			if(character > 'Z'){
 				character = character - 26;
 			}
-			
-			message[i] = character;
 		}
-	}
-	
+			
+		else if(character >= 'A' && character <= 'Z'){
+			character = (character + key);
+			
+		      if(character > 'Z'){
+				character = character - 26;
+			   }
+	    }
+
+			message[i] = character;
+    }
+    
 	printf("Encrypted message: %s", message);
-	//return message[i];
-}
+	//return message;
+    }
+
+
 
 /**********************************************************************************************/
 // Case 'b': Function for decryptRK()
@@ -90,7 +91,7 @@ int main() {
 	int i;
 	
 	printf("Enter a message to decrypt: ");
-	scanf("%s", message);
+	scanf("%[^\n]s", message);
 	
 	printf("Enter rotation key: ");
 	scanf("%d", &key);
@@ -102,12 +103,16 @@ int main() {
 		    character = character - 32;
 		    character = character - key;
 			
-			if(character < 'a'){
+			if(character < 'a' && character != 32){
 				character = character + 26;
+		      }
+
+		if(character == ' '){
+			    character = 32;
 			}
+	}
+
 			
-			message[i] = character;
-		}
 		else if(character >= 'A' && character <= 'Z'){
 			character = (character - key);
 			
@@ -117,11 +122,11 @@ int main() {
 			
 			message[i] = character;
 		}
-	}
-	
+}
+
 	printf("Decrypted message: %s", message);
 	//return message[i];
-}   
+}
 
 /******************************************************************************************/
 // Case 'c': Function for encryptSK()

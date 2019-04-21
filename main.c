@@ -1,11 +1,20 @@
-#include <stdio.h>
 
-char encryptRK(char character, int key); // Function prototype for encypting a rotation cipher with key
-char decryptRK(char charcter, int key); // Function prototype for decrypting a rotation cipher with key
+#include <stdio.h>
+#include <string.h>      
+
+void encryptRK(char *message, int rKey); // Function prototype for encypting a rotation cipher with key
+/*void decryptRK(char character, int rKey); // Function prototype for decrypting a rotation cipher with key
+void encryptSK(char character, int sKey);
+void decryptSK(char character, int sKey);
+void decryptR(char character);
+void decryptS(char character);*/
+
 
 int main() {
-    char character;
-    int key;
+    char *message[100];
+    int rKey;
+    char sKey[26];
+    char c;
     
     printf("Please select an option: \n");\
     printf("a) Encrypt a message using rotation cipher with key given\n");
@@ -15,23 +24,52 @@ int main() {
     printf("e) Decrypt a message using rotation cipher given text only\n");
     printf("f) Decrypt a message using substitution cipher given text only\n");
 
-    char c;
+    printf("Selected option: ");
     scanf("%c", &c);
+    
+    if (c < 'a' || c > 'f'){
+        printf("Invalid option\n Please select a letter a to f");
+    }
 
-    while(c > 'a' || c < 'f'){
+    while(c >= 'a' && c <= 'f'){
+        if(c == 'a' || c == 'c'){
+            printf("Enter a message to encrypt: ");
+        }
+        else{
+            printf("Enter a message to decrypt: ");
+        }
+        
+        scanf(" %[^\n]s", message);
+        
+        if(c == 'a' || c == 'b'){
+            printf("Enter rotation key: ");
+	        scanf("%d", &rKey); 
+        }
+        
+        if(c == 'c' || c == 'd'){
+            printf("Enter substitution key (string of letters to be allocated to the alphabet in given order: ");
+            scanf("%s", sKey);
+        }
+        
+        
         switch(c){
-            case 'a': encryptRK(character, key);
+            case 'a': 
+                encryptRK(message, rKey);
+                printf("Encrypted message: %s\n", message);
+                
                 break;
-            case 'b': decryptRK(character, key);
+                
+            /*case 'b': 
+                decryptRK(character, key);
                 break;
-            /*case 'c': encryptSK();
+            case 'c': encryptSK(character, key);
                 break;
-            case 'd': decryptSK();
+            case 'd': decryptSK(character, key);
                 break;
-            case 'e': decryptR();
+            case 'e': decryptR(character);
                 break;
-            case 'f': decryptS();
-                break;*/
+            case 'f': decryptS(character); */
+                break;
             default: printf("Unknown option %c\nPlease enter a, b, c, d, e or f\n");
         }
     }
@@ -42,23 +80,17 @@ int main() {
     /***********************************************************************************/
     // Case 'a': Function for encryptRK() 
     
-    char encryptRK(char character, int key){
+    void encryptRK(char *message, int rKey){
         
-	char message[100];
+    char character;
 	int i;
-	
-	printf("Enter a message to encrypt: ");
-	scanf("%[^\n]s", message);
-	
-	printf("Enter rotation key: ");
-	scanf("%d", &key); 
 	
 	for(i = 0; message[i] != '\0'; ++i){
 		character = message[i];
 	    
 		if(character >= 'a' && character <= 'z'){
 		    character = character - 32;
-		    character = character + key;
+		    character = character + rKey;
 			
 			if(character > 'Z'){
 				character = character - 26;
@@ -66,7 +98,7 @@ int main() {
 		}
 			
 		else if(character >= 'A' && character <= 'Z'){
-			character = (character + key);
+			character = (character + rKey);
 			
 		      if(character > 'Z'){
 				character = character - 26;
@@ -75,9 +107,8 @@ int main() {
 
 			message[i] = character;
     }
-    
-	printf("Encrypted message: %s", message);
-	//return message;
+
+	return 0;
     }
 
 
@@ -85,8 +116,8 @@ int main() {
 /**********************************************************************************************/
 // Case 'b': Function for decryptRK()
 
-char decryptRK(char character, int key){
-        
+void decryptRK(char character, int key){
+    
 	char message[100];
 	int i;
 	
@@ -106,7 +137,6 @@ char decryptRK(char character, int key){
 			if(character < 'A'){
 				character = character + 26;
 	      }
-
 	   }
 
 			

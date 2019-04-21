@@ -3,8 +3,8 @@
 #include <string.h>      
 
 void encryptRK(char *message, int rKey); // Function prototype for encypting a rotation cipher with key
-/*void decryptRK(char character, int rKey); // Function prototype for decrypting a rotation cipher with key
-void encryptSK(char character, int sKey);
+void decryptRK(char *message, int rKey); // Function prototype for decrypting a rotation cipher with key
+/*void encryptSK(char character, int sKey);
 void decryptSK(char character, int sKey);
 void decryptR(char character);
 void decryptS(char character);*/
@@ -59,10 +59,13 @@ int main() {
                 
                 break;
                 
-            /*case 'b': 
-                decryptRK(character, key);
+            case 'b': 
+                decryptRK(message, rKey);
+                printf("Decrypted message: %s\n", message);
+                
                 break;
-            case 'c': encryptSK(character, key);
+                
+           /* case 'c': encryptSK(character, key);
                 break;
             case 'd': decryptSK(character, key);
                 break;
@@ -116,23 +119,17 @@ int main() {
 /**********************************************************************************************/
 // Case 'b': Function for decryptRK()
 
-void decryptRK(char character, int key){
+void decryptRK(char *message, int rKey){
     
-	char message[100];
+	char character;
 	int i;
-	
-	printf("Enter a message to decrypt: ");
-	scanf("%[^\n]s", message);
-	
-	printf("Enter rotation key: ");
-	scanf("%d", &key);
 	
 	for(i = 0; message[i] != '\0'; ++i){
 		character = message[i];
 		
 		if(character >= 'a' && character <= 'z'){
 		    character = character - 32;
-		    character = character - key;
+		    character = character - rKey;
 			
 			if(character < 'A'){
 				character = character + 26;
@@ -141,7 +138,7 @@ void decryptRK(char character, int key){
 
 			
 		else if(character >= 'A' && character <= 'Z'){
-			character = (character - key);
+			character = (character - rKey);
 			
 			if(character < 'A'){
 				character = character + 26;
@@ -151,8 +148,7 @@ void decryptRK(char character, int key){
 		message[i] = character;
 }
 
-	printf("Decrypted message: %s", message);
-	//return message[i];
+	return 0;
 }
 
 /******************************************************************************************/

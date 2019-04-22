@@ -178,9 +178,11 @@ void encryptSK(char *message, char *sKey){
 	   }
 
 		
-		if(character == alphabet[i]){
-		    character == sKey[i];
+		if(character = alphabet[i]){
+		    character = sKey[i];
 		}
+		
+
 		
 		message[i] = character;
 		

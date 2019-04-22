@@ -4,8 +4,8 @@
 
 void encryptRK(char *message, int rKey); // Function prototype for encypting a rotation cipher with key
 void decryptRK(char *message, int rKey); // Function prototype for decrypting a rotation cipher with key
-/*void encryptSK(char character, int sKey);
-void decryptSK(char character, int sKey);
+void encryptSK(char *message, char *sKey);
+/*void decryptSK(char character, int sKey);
 void decryptR(char character);
 void decryptS(char character);*/
 
@@ -65,14 +65,19 @@ int main() {
                 
                 break;
                 
-           /* case 'c': encryptSK(character, key);
+           case 'c': 
+                encryptSK(message, sKey);
+                printf("Encrypted message: %s\n", message);
+                
                 break;
-            case 'd': decryptSK(character, key);
+                
+            /*case 'd': decryptSK(character, key);
                 break;
             case 'e': decryptR(character);
                 break;
-            case 'f': decryptS(character); */
-                break;
+            case 'f': decryptS(character); 
+                break;*/
+                
             default: printf("Unknown option %c\nPlease enter a, b, c, d, e or f\n");
         }
     }
@@ -153,6 +158,34 @@ void decryptRK(char *message, int rKey){
 
 /******************************************************************************************/
 // Case 'c': Function for encryptSK()
+    
+void encryptSK(char *message, char *sKey){
+        
+    char character;
+	int i;
+	char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+	//char sKey[26] = {'C', 'A', 'E', 'B', 'H', 'D', 'I', 'F', 'G', 'K', 'N', 'J', 'P', 'O', 'M', 'L', 'S', 'U', 'Q', 'R', 'W', 'T', 'V', 'Z', 'X', 'Y'};
+	
+	for(i = 0; message[i] != '\0'; ++i){
+		character = message[i];
+	    
+		if(character >= 'a' && character <= 'z'){
+		    character = character - 32;
+			
+			if(character > 'Z'){
+				character = character - 26;
+			}
+	   }
 
+		
+		if(character == alphabet[i]){
+		    character == sKey[i];
+		}
+		
+		message[i] = character;
+		
+		}
 
+	return 0;
+    }
  

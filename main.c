@@ -163,7 +163,7 @@ void encryptSK(char *message, char *sKey){
         
     char character;
 	int i;
-	char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+	//char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 	
 	for(i = 0; message[i] != '\0'; i++){
 		character = message[i];
@@ -175,111 +175,63 @@ void encryptSK(char *message, char *sKey){
 				character = character - 26;
 			}
 	   }
-		
-		if(character == alphabet[1]){
-		    character = sKey[1];
-		}
-		
-		if(character == alphabet[2]){
-		    character = sKey[2];
-		}
-		
-		if(character == alphabet[3]){
-		    character = sKey[3];
-		}
-		
-		if(character == alphabet[4]){
-		    character = sKey[4];
-		}
-		
-		if(character == alphabet[5]){
-		    character = sKey[5];
-		}
-		
-		if(character == alphabet[6]){
-		    character = sKey[6];
-		}
-		
-		if(character == alphabet[7]){
-		    character = sKey[7];
-		}
-		
-		if(character == alphabet[8]){
-		    character = sKey[8];
-		}
-		
-		if(character == alphabet[9]){
-		    character = sKey[9];
-		}
-		
-		if(character == alphabet[10]){
-		    character = sKey[10];
-		}
-		
-		if(character == alphabet[11]){
-		    character = sKey[11];
-		}
-		
-		if(character == alphabet[12]){
-		    character = sKey[12];
-		}
-		
-		if(character == alphabet[13]){
-		    character = sKey[13];
-		}
-		
-		if(character == alphabet[14]){
-		    character = sKey[14];
-		}
-		
-		if(character == alphabet[15]){
-		    character = sKey[15];
-		}
-		
-		if(character == alphabet[16]){
-		    character = sKey[16];
-		}
-		
-		if(character == alphabet[17]){
-		    character = sKey[17];
-		}
-		
-		if(character == alphabet[18]){
-		    character = sKey[18];
-		}
-		
-		if(character == alphabet[19]){
-		    character = sKey[19];
-		}
-		
-		if(character == alphabet[20]){
-		    character = sKey[20];
-		}
-		
-		if(character == alphabet[21]){
-		    character = sKey[21];
-		}
-		
-		if(character == alphabet[22]){
-		    character = sKey[22];
-		}
-		
-		if(character == alphabet[23]){
-		    character = sKey[23];
-		}
-		
-		if(character == alphabet[24]){
-		    character = sKey[24];
-		}
-		
-		if(character == alphabet[25]){
-		    character = sKey[25];
-		}
-		
-		if(character == alphabet[26]){
-		    character = sKey[26];
-		}
-		
+	   
+	   switch(character){
+	       case 'A': character = sKey[0];
+	            break;
+	       case 'B': character = sKey[1];
+	            break;
+	       case 'C': character = sKey[2];
+	            break;
+	       case 'D': character = sKey[3];
+	            break;
+	       case 'E': character = sKey[4];
+	            break;
+	       case 'F': character = sKey[5];
+	            break;
+	       case 'G': character = sKey[6];
+	            break;
+	       case 'H': character = sKey[7];
+	            break;
+	       case 'I': character = sKey[8];
+	            break;
+	       case 'J': character = sKey[9];
+	            break;
+	       case 'K': character = sKey[10];
+	            break;
+	       case 'L': character = sKey[11];
+	            break;
+	       case 'M': character = sKey[12];
+	            break;
+	       case 'N': character = sKey[13];
+	            break;
+	       case 'O': character = sKey[14];
+	            break;
+	       case 'P': character = sKey[15];
+	            break;
+	       case 'Q': character = sKey[16];
+	            break;
+	       case 'R': character = sKey[17];
+	            break;
+	       case 'S': character = sKey[18];
+	            break;
+	       case 'T': character = sKey[19];
+	            break;
+	       case 'U': character = sKey[20];
+	            break;
+	       case 'V': character = sKey[21];
+	            break;
+	       case 'W': character = sKey[22];
+	            break;
+	       case 'X': character = sKey[23];
+	            break;
+	       case 'Y': character = sKey[24];
+	            break;
+	       case 'Z': character = sKey[25];
+	            break;
+	       default: character = ' ';
+	   }
+	   
 		message[i] = character;
 		
 		}

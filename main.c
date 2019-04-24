@@ -1,4 +1,4 @@
-
+ 
 #include <stdio.h>
 #include <string.h>      
 
@@ -164,9 +164,8 @@ void encryptSK(char *message, char *sKey){
     char character;
 	int i;
 	char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-	//char sKey[26] = {'C', 'A', 'E', 'B', 'H', 'D', 'I', 'F', 'G', 'K', 'N', 'J', 'P', 'O', 'M', 'L', 'S', 'U', 'Q', 'R', 'W', 'T', 'V', 'Z', 'X', 'Y'};
 	
-	for(i = 0; message[i] != '\0'; ++i){
+	for(i = 0; message[i] != '\0'; i++){
 		character = message[i];
 	    
 		if(character >= 'a' && character <= 'z'){
@@ -176,18 +175,116 @@ void encryptSK(char *message, char *sKey){
 				character = character - 26;
 			}
 	   }
-
 		
-		if(character = alphabet[i]){
-		    character = sKey[i];
+		if(character == alphabet[1]){
+		    character = sKey[1];
 		}
 		
-
+		if(character == alphabet[2]){
+		    character = sKey[2];
+		}
+		
+		if(character == alphabet[3]){
+		    character = sKey[3];
+		}
+		
+		if(character == alphabet[4]){
+		    character = sKey[4];
+		}
+		
+		if(character == alphabet[5]){
+		    character = sKey[5];
+		}
+		
+		if(character == alphabet[6]){
+		    character = sKey[6];
+		}
+		
+		if(character == alphabet[7]){
+		    character = sKey[7];
+		}
+		
+		if(character == alphabet[8]){
+		    character = sKey[8];
+		}
+		
+		if(character == alphabet[9]){
+		    character = sKey[9];
+		}
+		
+		if(character == alphabet[10]){
+		    character = sKey[10];
+		}
+		
+		if(character == alphabet[11]){
+		    character = sKey[11];
+		}
+		
+		if(character == alphabet[12]){
+		    character = sKey[12];
+		}
+		
+		if(character == alphabet[13]){
+		    character = sKey[13];
+		}
+		
+		if(character == alphabet[14]){
+		    character = sKey[14];
+		}
+		
+		if(character == alphabet[15]){
+		    character = sKey[15];
+		}
+		
+		if(character == alphabet[16]){
+		    character = sKey[16];
+		}
+		
+		if(character == alphabet[17]){
+		    character = sKey[17];
+		}
+		
+		if(character == alphabet[18]){
+		    character = sKey[18];
+		}
+		
+		if(character == alphabet[19]){
+		    character = sKey[19];
+		}
+		
+		if(character == alphabet[20]){
+		    character = sKey[20];
+		}
+		
+		if(character == alphabet[21]){
+		    character = sKey[21];
+		}
+		
+		if(character == alphabet[22]){
+		    character = sKey[22];
+		}
+		
+		if(character == alphabet[23]){
+		    character = sKey[23];
+		}
+		
+		if(character == alphabet[24]){
+		    character = sKey[24];
+		}
+		
+		if(character == alphabet[25]){
+		    character = sKey[25];
+		}
+		
+		if(character == alphabet[26]){
+		    character = sKey[26];
+		}
 		
 		message[i] = character;
 		
 		}
 
 	return 0;
+	
     }
  

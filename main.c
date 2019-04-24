@@ -5,8 +5,8 @@
 void encryptRK(char *message, int rKey); // Function prototype for encypting a rotation cipher with key
 void decryptRK(char *message, int rKey); // Function prototype for decrypting a rotation cipher with key
 void encryptSK(char *message, char *sKey);
-/*void decryptSK(char character, int sKey);
-void decryptR(char character);
+void decryptSK(char *message, char *sKey);
+/*void decryptR(char character);
 void decryptS(char character);*/
 
 
@@ -71,9 +71,13 @@ int main() {
                 
                 break;
                 
-            /*case 'd': decryptSK(character, key);
+            case 'd': 
+                decryptSK(message, sKey);
+                printf("Decrypted message: %s\n", message);
+                
                 break;
-            case 'e': decryptR(character);
+                
+            /*case 'e': decryptR(character);
                 break;
             case 'f': decryptS(character); 
                 break;*/
@@ -239,4 +243,142 @@ void encryptSK(char *message, char *sKey){
 	return 0;
 	
     }
+
+/**************************************************************************************/
+// Case 'd': Function for decryptSK()
+
+void decryptSK(char *message, char *sKey){
+    
+	char character;
+	int i;
+	
+	for(i = 0; message[i] != '\0'; ++i){
+		character = message[i];
+		
+		if(character >= 'a' && character <= 'z'){
+		    character = character - 32;
+        }
+
+		
+		if(character < 'A'){
+				character = character + 26;
+        }
+        
+        if(character == sKey[0]){
+            character = 'A';
+        }
+        
+        if(character == sKey[1]){
+            character = 'B';
+        }
+        
+        if(character == sKey[2]){
+            character = 'C';
+        }
+        
+        if(character == sKey[3]){
+            character = 'D';
+        }
+        
+        if(character == sKey[4]){
+            character = 'E';
+        }
+        
+        if(character == sKey[5]){
+            character = 'F';
+        }
+        
+        if(character == sKey[6]){
+            character = 'G';
+        }
+        
+        if(character == sKey[7]){
+            character = 'H';
+        }
+        
+        if(character == sKey[8]){
+            character = 'I';
+        }
+        
+        if(character == sKey[9]){
+            character = 'J';
+        }
+        
+        if(character == sKey[10]){
+            character = 'K';
+        }
+        
+        if(character == sKey[11]){
+            character = 'L';
+        }
+        
+        if(character == sKey[12]){
+            character = 'M';
+        }
+        
+        if(character == sKey[13]){
+            character = 'N';
+        }
+        
+        if(character == sKey[14]){
+            character = 'O';
+        }
+        
+        if(character == sKey[15]){
+            character = 'P';
+        }
+        
+        if(character == sKey[16]){
+            character = 'Q';
+        }
+        
+        if(character == sKey[17]){
+            character = 'R';
+        }
+        
+        if(character == sKey[18]){
+            character = 'S';
+        }
+        
+        if(character == sKey[19]){
+            character = 'T';
+        }
+        
+        if(character == sKey[20]){
+            character = 'U';
+        }
+        
+        if(character == sKey[21]){
+            character = 'V';
+        }
+        
+        if(character == sKey[22]){
+            character = 'W';
+        }
+        
+        if(character == sKey[23]){
+            character = 'X';
+        }
+        
+        if(character == sKey[24]){
+            character = 'Y';
+        }
+        
+        if(character == sKey[25]){
+            character = 'Z';
+        }
+        
+        else{
+            character = ' ';
+        }
+	   
+		message[i] = character;
+		
+	}
+
+	return 0;
+	
+    }
+
+	      
  

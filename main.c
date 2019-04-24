@@ -264,118 +264,114 @@ void decryptSK(char *message, char *sKey){
 				character = character + 26;
         }
         
-        if(character == sKey[0]){
+        else if(character == sKey[0]){
             character = 'A';
         }
         
-        if(character == sKey[1]){
+        else if(character == sKey[1]){
             character = 'B';
         }
         
-        if(character == sKey[2]){
+        else if(character == sKey[2]){
             character = 'C';
         }
         
-        if(character == sKey[3]){
+        else if(character == sKey[3]){
             character = 'D';
         }
         
-        if(character == sKey[4]){
+        else if(character == sKey[4]){
             character = 'E';
         }
         
-        if(character == sKey[5]){
+        else if(character == sKey[5]){
             character = 'F';
         }
         
-        if(character == sKey[6]){
+        else if(character == sKey[6]){
             character = 'G';
         }
         
-        if(character == sKey[7]){
+        else if(character == sKey[7]){
             character = 'H';
         }
         
-        if(character == sKey[8]){
+        else if(character == sKey[8]){
             character = 'I';
         }
         
-        if(character == sKey[9]){
+        else if(character == sKey[9]){
             character = 'J';
         }
         
-        if(character == sKey[10]){
+        else if(character == sKey[10]){
             character = 'K';
         }
         
-        if(character == sKey[11]){
+        else if(character == sKey[11]){
             character = 'L';
         }
         
-        if(character == sKey[12]){
+        else if(character == sKey[12]){
             character = 'M';
         }
         
-        if(character == sKey[13]){
+        else if(character == sKey[13]){
             character = 'N';
         }
         
-        if(character == sKey[14]){
+        else if(character == sKey[14]){
             character = 'O';
         }
         
-        if(character == sKey[15]){
+        else if(character == sKey[15]){
             character = 'P';
         }
         
-        if(character == sKey[16]){
+        else if(character == sKey[16]){
             character = 'Q';
         }
         
-        if(character == sKey[17]){
+        else if(character == sKey[17]){
             character = 'R';
         }
         
-        if(character == sKey[18]){
+        else if(character == sKey[18]){
             character = 'S';
         }
         
-        if(character == sKey[19]){
+        else if(character == sKey[19]){
             character = 'T';
         }
         
-        if(character == sKey[20]){
+        else if(character == sKey[20]){
             character = 'U';
         }
         
-        if(character == sKey[21]){
+        else if(character == sKey[21]){
             character = 'V';
         }
         
-        if(character == sKey[22]){
+        else if(character == sKey[22]){
             character = 'W';
         }
         
-        if(character == sKey[23]){
+        else if(character == sKey[23]){
             character = 'X';
         }
         
-        if(character == sKey[24]){
+        else if(character == sKey[24]){
             character = 'Y';
         }
         
-        if(character == sKey[25]){
+        else if(character == sKey[25]){
             character = 'Z';
         }
         
-        if(character == 32){
+        else if(character == 32){
             character = ' ';
         }
         
-        /*else{
-            character = ' ';
-        }*/
-	   
 		message[i] = character;
 		
 	}

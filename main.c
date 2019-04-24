@@ -368,9 +368,13 @@ void decryptSK(char *message, char *sKey){
             character = 'Z';
         }
         
-        else{
+        if(character == 32){
             character = ' ';
         }
+        
+        /*else{
+            character = ' ';
+        }*/
 	   
 		message[i] = character;
 		

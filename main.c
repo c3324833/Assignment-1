@@ -1,22 +1,38 @@
-  
+/* This code allows the user to encrypt and decrypt cipher text using both rotation or
+substitution cipher methods. The encryption process takes a “message” and “key” as inputs
+from the user and produces cipher text. The decryption process performs the reverse by
+converting cipher text and the key back into the human-readable original message. This
+code allows the user to select from the different options provided depending on whether
+they would like to use encryption or decrytion, and with both possible methods. It also 
+allows the user to select an option if they key for their cipher text is unknown. It 
+includes two header files, the first being the standard #include <stdio.h> which is used
+for all C code, and the second being #include <string.h> which allows strings to be taken
+from stdin and printed to stdout.*/ 
+ 
 #include <stdio.h>
 #include <string.h>      
 
+/* Since this code uses a variety of functions, these functions must have prototypes
+which are located above main in the code. These are in the form of return_datatype 
+function_name (arguments). Each function will be furthered explained in their definitions.*/
+
 void encryptRK(char *message, int rKey); // Function prototype for encypting a rotation cipher with key
 void decryptRK(char *message, int rKey); // Function prototype for decrypting a rotation cipher with key
-void encryptSK(char *message, char *sKey);
-void decryptSK(char *message, char *sKey);
-/*void decryptR(char character);
-void decryptS(char character);*/
+void encryptSK(char *message, char *sKey); // Function prototype for encrypting a substitution cipher with key given
+void decryptSK(char *message, char *sKey); // Function prototype for decrypting a substitution cipher with key given 
+/*void decryptR(char character); // Function prototype for decrypting a rotation cipher without key
+void decryptS(char character);*/ // Function prototype for decrypting a substitution cipher without key
 
 
 int main() {
-    char *message[100];
-    int rKey;
-    char sKey[26];
-    char c;
+    char *message[100]; // Declaring a string (array of type char) which stores a collection of variables, being the message entered by the user 
+    int rKey; // Declaring an integer as the rotation key (integer number representes number of shifts of the alphabet to the right)
+    char sKey[26]; // Declaring a string as the substitution key which stores a rearranged version of the alphabet and therefore holds 26 variable
+    char c; // Declaring a char to be used to take in user input and select the relevant option from the menu
     
-    printf("Please select an option: \n");\
+    // The following printf() statements print a menu to stdout for the user to read
+    
+    printf("Please select an option (a to f) and press <enter>: \n"); // This prompts the user to select a letter
     printf("a) Encrypt a message using rotation cipher with key given\n");
     printf("b) Decrypt a message using rotation cipher with key given\n");
     printf("c) Encrypt a message using substitution cipher with substitutions given\n");
@@ -25,8 +41,9 @@ int main() {
     printf("f) Decrypt a message using substitution cipher given text only\n");
 
     printf("Selected option: ");
-    scanf("%c", &c);
+    scanf("%c", &c); // This takes the user input from stdin and stores it in the char declared as 'c'
     
+    // The following IF statement prints an error statement is the user does not enter a valid option
     if (c < 'a' || c > 'f'){
         printf("Invalid option\n Please select a letter a to f");
     }

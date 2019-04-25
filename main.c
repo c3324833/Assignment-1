@@ -1,4 +1,4 @@
- 
+  
 #include <stdio.h>
 #include <string.h>      
 
@@ -260,11 +260,13 @@ void decryptSK(char *message, char *sKey){
         }
 
 		
-		if(character < 'A'){
+		if(character < 'A' && character != 32){
 				character = character + 26;
         }
         
-        else if(character == sKey[0]){
+        
+    
+        if(character == sKey[0]){
             character = 'A';
         }
         
@@ -368,9 +370,9 @@ void decryptSK(char *message, char *sKey){
             character = 'Z';
         }
         
-        else if(character == 32){
+        /*else if(character == 32){
             character = ' ';
-        }
+        }*/
         
 		message[i] = character;
 		

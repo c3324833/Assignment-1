@@ -79,17 +79,17 @@ int main() {
         
         /* The following swith case is used with the user-friendly menu to replace a 
         long line of IF statements depending on which option the user selected as their
-        task. */
+        task. It is dependent on what c is equal to (i.e. the choice the user selects*/
         switch(c){ 
-            case 'a': 
-                encryptRK(message, rKey);
-                printf("Encrypted message: %s\n", message);
+            case 'a': // This formatting means that if c is equal to 'a' it will complete the following tasks 
+                encryptRK(message, rKey); // This calls the function in main and at this point in the code, it will jump to the function defintion and then go back to normal flow control once completed 
+                printf("Encrypted message: %s\n", message); // After the function has been executed, it will print the user friendly prompt followed by the variable message using the %s format specifier for a string, and then enter a new line finish
                 
-                break;
-                
+                break; // Entering a break statement ensures that the other following options are not executed as they would with normal flow control. The break jumps out to the end of the swtich case statement
+                 
             case 'b': 
-                decryptRK(message, rKey);
-                printf("Decrypted message: %s\n", message);
+                decryptRK(message, rKey); // This calls on the function for decrypting with a rotation cipher if 'b''is selected with the function arguments in brackets as formatted for all switch case options
+                printf("Decrypted message: %s\n", message); // After executing the function, flow control continues to print a message labelled as the decrypted message with the same format for the string
                 
                 break;
                 
@@ -105,15 +105,25 @@ int main() {
                 
                 break;
                 
-            /*case 'e': decryptR(character);
+            /*case 'e': 
+                decryptR(character);
+                printf("Encrypted ")
+                
                 break;
+                
             case 'f': decryptS(character); 
                 break;*/
                 
-            default: printf("Unknown option %c\nPlease enter a, b, c, d, e or f\n");
+            default: printf("Unknown option %c\nPlease enter a, b, c, d, e or f\n"); 
+            /* The default option in the switch case is executed if the value of 'c' doesn't match any
+            other value. In this case, this would occur if the user entered a letter that was not a 
+            lowercase a to f. If this occurs the default option will print an error message for the user
+            by stating 'unknown option' with the %c inserting the char value of c so that the user can see
+            the option they incorrectly entered. After a new line it will then ask the user to select a 
+            valid option, printing the possible options again. */
         }
     }
-    return 0;
+    return 0; // This closes main 
 }
 
 

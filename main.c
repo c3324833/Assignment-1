@@ -47,29 +47,40 @@ int main() {
     if (c < 'a' || c > 'f'){
         printf("Invalid option\n Please select a letter a to f");
     }
-
+    
+    // The following WHILE statement executes the preceding IF statements, as long as the user inputs a valid option
     while(c >= 'a' && c <= 'f'){
-        if(c == 'a' || c == 'c'){
-            printf("Enter a message to encrypt: ");
+        if(c == 'a' || c == 'c'){ 
+            printf("Enter a message to encrypt: "); // If the user selects either encryption option (a or c) it prints a prompt for them to enter a human readable message
         }
         else{
-            printf("Enter a message to decrypt: ");
+            printf("Enter a message to decrypt: "); // Otherwise, all other options are decryption tasks so if a or c is not selected, it prompts the user to enter a message to be decoded
         }
         
-        scanf(" %[^\n]s", message);
+        scanf(" %[^\n]s", message); /* This scanf() function takes in the user input 
+        which will be enterted in the form of a string of letters (the message).
+        the "%s" format specifier is used for storing strings, however by placing the 
+        [^\n] within the format specifier here, it instructs the compiler to continue
+        to read information from stdin even when whitespace is detected. It only quits
+        reading the user input when a new line is detected. This allows messages with
+        mutiple words to be enterd by the user and encrypted or decrypted. The & symbol
+        is not used before the variable name (message) as an array name is already a
+        pointer to the element when using strings.*/
         
-        if(c == 'a' || c == 'b'){
-            printf("Enter rotation key: ");
-	        scanf("%d", &rKey); 
+        if(c == 'a' || c == 'b'){ // This IF statment is used to recognise if the user selected an option using rotaiton cipher with a key (a or b) using the Boolean OR and EQUALS symbols
+            printf("Enter rotation key (number 0 to 25): "); // If this is true, it prints this message to prompt the user to enter a number as the rotation
+	        scanf("%d", &rKey);  // The %d format specifier is used to store integers, and the & symbol is needed to point to where to store this input, being rKey
         }
         
-        if(c == 'c' || c == 'd'){
-            printf("Enter substitution key (string of letters to be allocated to the alphabet in given order: ");
-            scanf("%s", sKey);
+        if(c == 'c' || c == 'd'){ // This IF statement is use to recognise if the user selected an option using substitution cipher with a key (c or d) using the Boolean OR and EQUALS symbols
+            printf("Enter substitution key (string of letters to be allocated to the alphabet in given order: "); // If this is ttue, it prints this message to prompt the user to enter their chosen key which will be later used
+            scanf("%s", sKey); // This is then read form stdin as a string that was entered, meaning th the %s format specifier is used and no & symbol necessary for strings
         }
         
-        
-        switch(c){
+        /* The following swith case is used with the user-friendly menu to replace a 
+        long line of IF statements depending on which option the user selected as their
+        task. */
+        switch(c){ 
             case 'a': 
                 encryptRK(message, rKey);
                 printf("Encrypted message: %s\n", message);

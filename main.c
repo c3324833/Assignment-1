@@ -476,32 +476,43 @@ void decryptSK(char *message, char *sKey){
 /********************************************************************************************************/
 // Case 'e': Function for decryptR()
 
+/* As with all previous functions, this function will have no return value. The name does not include
+the K since no key is given, and also only has one argument, being the string message entered. The 
+same character and character counter (i) were declared with a new counter variable (j) used to 
+test all key options. This counter will subtract the first key being one*/
+
 void decryptR(char *message){
     
     char character;
-	int i;
-    int j;
+	int i; // character counter
+    int j; // key counter
     
-    for(j = 1; j <=26; j++){
-    for(i = 0; message[i] != '\0'; i++){
-		character = message[i];
+    /* This FOR loop has the original decryption FOR loop within in, but must be initialised in an
+    outer loop to cycle through both the message and all possible keys. The new FOR loop declared
+    uses the key counter (j) and inialises this as one to test the first rotation key of one. All
+    possible keys are then tested meaning the condition is set for j to be less than 26, and j is
+    incremented each time for the new key. Within this FOR loop is the usual format of FOR loop that 
+    has been previouslt described to cycle through each individual character and apply the key.*/
+    for(j = 1; j < 26; j++){
+        for(i = 0; message[i] != '\0'; i++){
+		  character = message[i];
     
-        if(character >= 'a' && character <= 'z'){ 
+            if(character >= 'a' && character <= 'z'){ // The function also detects lowercase letters and converts these to uppercase by subtracting 32 from the ASCII value if necessary
 		    character = character - 32; 
-        }
-        if(character != 32){
-            character = character - 1;
-        }
-        if(character < 'A' && character != 32){
+            }
+            if(character != 32){ // The key is applied to any value besides spaces (ASCII value of 32) to ensure spaces are kept as is
+            character = character - 1; // The key is subtracted and the new value is stored in the variable character
+            }
+            if(character < 'A' && character != 32){ // If this results in an ASCII values less than 'A' this will match to a symbol, therefore 26 can be added to match to the correct letter
                 character = character + 26;
-        }
-        if(character == 32){
+            }
+            if(character == 32){ // If the character is equal to whitespace this will be preserved so that it is still a human readable message with spaces
                 character = ' ';
-        }
-        message [i] = character; 
-    }   
-    printf("Possible decryption: %s\n", message);
-}
+            }
+        message [i] = character; // The decrypted character value is then stored in the ocrresponding memory address of the message so that the encrypted letter in memory is replaced with the decrypted letter
+        }   
+    printf("Possible decryption: %s\n\n", message); // The possible message is then printed for the user to read all outputs to stdout with two new space lines to seperate long messages 
+    } // The %s format specifier is used for a string 
 return 0;
 }
 

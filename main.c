@@ -489,12 +489,19 @@ void decryptR(char *message){
             if(character >= 'a' && character <= 'z'){ // This IF statement is used to detect if the message entered is in lowercase text 
 		    character = character - 32; // If this is true, 32 is subtracted from the lowercase ASCII value of the letter to convert it to its uppercase version. This new ASCII value is then assigned to the variable character. 
             }
-        
-            character = character - j;
             
-            if(character < 'A'){
+            if(character != 32){
+            character = character - j;
+            }
+
+            if(character < 'A' && character != 32){
                 character = character + 26;
             }
+            
+            if(character == 32){
+                character = ' ';
+            }
+            
             message [i] = character; 
     
         }   

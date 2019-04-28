@@ -130,14 +130,15 @@ int main() {
     /***********************************************************************************/
     // Case 'a': Function for encryptRK() 
     
-    void encryptRK(char *message, int rKey){ // This is the function definition and begins by restating the prototype then opening braces 
-    /* This function does not need a return value since the message is stored in the memory location after 
+     /* This function does not need a return value since the message is stored in the memory location after 
     encryption, meaning the return data type is void. The function name is encryptRK, with the R standing
     for rotation, and the K indicating there is a key. The arguments that the function takes in are the 
     message and the key. The message is a string of letters (array of type char) and since message was 
     declared in main when the user inputs their message, a pointer (denoted by a *) is used infront of the
     variable name to instruct the function to change data in that memory location. The rotation key is a 
     whole number between 0 and 25 so it is of integer data type. */
+    
+    void encryptRK(char *message, int rKey){ // This is the function definition and begins by restating the prototype then opening braces 
     
     char character; // A char is declared called character so that the function can process individual letters rather than the whole message at once
 	int i; // A integer is declared called i to be used as a counter in the FOR loop to cycle through each individual character in chronological order
@@ -149,6 +150,7 @@ int main() {
 	symbol is used and '\0' is used to denote NULL which is the last value stored in string memory. As
 	long as the message does not each NULL, the function will continue to execute. The increment means
 	that one will be added to the counter each time the loop executes to move to the next character.*/
+	
 	for(i = 0; message[i] != '\0'; ++i){
 		character = message[i]; // The [i] element of message (value of i in each loop) is stored in the variable character for the function to be executed on 
 	    
@@ -169,7 +171,7 @@ int main() {
 			   }
 	    }
 
-			message[i] = character; // Once the value of character is calculated wiht the rotation key added, this is then stored back in the corresponding string memory address of where it was taken, replacing the character in the string with its encrypted version
+			message[i] = character; // Once the value of character is calculated with the rotation key added, this is then stored back in the corresponding string memory address of where it was taken, replacing the character in the string with its encrypted version
     }
 
 	return 0; // Once this FOR loop has executed until reaching NULL in the message, all characters will have been replaced with their encrypted version so the function has been completed and can return to its position where called in main to resume flow control and print the result
@@ -180,36 +182,42 @@ int main() {
 /**********************************************************************************************/
 // Case 'b': Function for decryptRK()
 
+/* This function prototype is the same as case a, however the function name is different for decryption.
+This is because it also has no return value and uses the same arguments and their data types. The same
+variables of character and i are also declared to decrypt each individual character at a time with the
+same FOR loop format used to execute the function.*/
+
 void decryptRK(char *message, int rKey){
     
 	char character;
 	int i;
 	
+
 	for(i = 0; message[i] != '\0'; ++i){
 		character = message[i];
 		
-		if(character >= 'a' && character <= 'z'){
-		    character = character - 32;
-		    character = character - rKey;
+		if(character >= 'a' && character <= 'z'){ // This IF statement is used to detect if the message entered is in lowercase text 
+		    character = character - 32; // If this is true, 32 is subtracted from the lowercase ASCII value of the letter to convert it to its uppercase version. This new ASCII value is then assigned to the variable character.
+		    character = character - rKey; // The key is then subtracted from this ASCII value since this does the opposite of encryption
 			
-			if(character < 'A'){
-				character = character + 26;
+			if(character < 'A'){ // If this subtraction results in an ASCII value which is less than A this will not match to a letter and needs to be converted 
+				character = character + 26; // If this is true, adding 26 to the ASCII value will match it to the correct letter in the alphabet to be read
 	      }
 	   }
 
 			
-		else if(character >= 'A' && character <= 'Z'){
-			character = (character - rKey);
+		else if(character >= 'A' && character <= 'Z'){ // If the message is entered as an uppercase string, the ASCII values are already in the correct form
+			character = (character - rKey); // If this is true, the key can be directly subtracted 
 			
-			if(character < 'A'){
+			if(character < 'A'){ // As seen above, if this subtraction does not match to a letter, 26 can be added to the ASCII value
 				character = character + 26;
 			}
 		}
 		
-		message[i] = character;
+		message[i] = character; // Once the value of character is calculated with the rotation key subtracted, this is then stored back in the corresponding string memory address of where it was taken, replacing the character in the string with its decrypted version
 }
 
-	return 0;
+	return 0; // Once this FOR loop has executed until reaching NULL in the message, all characters will have been replaced with their decrypted version so the function has been completed and can return to its position where called in main to resume flow control and print the result
 }
 
 /******************************************************************************************/

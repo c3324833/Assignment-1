@@ -479,36 +479,84 @@ void decryptSK(char *message, char *sKey){
 void decryptR(char *message){
     
     char character;
-    int i;
-    int j = 1;
+	int i;
     
-    for(j = 1; j <= 26; j++){
-        for(i = 0; message[i] != '\0'; ++i){
-		  character = message[i];
+    for(i = 0; message[i] != '\0'; i++){
+		character = message[i];
     
-            if(character >= 'a' && character <= 'z'){ // This IF statement is used to detect if the message entered is in lowercase text 
-		    character = character - 32; // If this is true, 32 is subtracted from the lowercase ASCII value of the letter to convert it to its uppercase version. This new ASCII value is then assigned to the variable character. 
-            }
-            
-            if(character != 32){
-            character = character - j;
-            }
-
-            if(character < 'A' && character != 32){
+        if(character >= 'a' && character <= 'z'){ 
+		    character = character - 32; 
+        }
+        if(character != 32){
+            character = character - 1;
+        }
+        if(character < 'A' && character != 32){
                 character = character + 26;
-            }
-            
-            if(character == 32){
+        }
+        if(character == 32){
                 character = ' ';
-            }
-            
-            message [i] = character; 
+        }
+        message [i] = character; 
+    }   
+    printf("Possible decryption: %s\n", message);
+
+
+    for(i = 0; message[i] != '\0'; i++){
+		character = message[i];
     
-        }   
-        printf("Possible decryption: %s\n", message);
-    }
+        if(character >= 'a' && character <= 'z'){ 
+		    character = character - 32; 
+        }
+        if(character != 32){
+            character = character - 1;
+        }
+        if(character < 'A' && character != 32){
+                character = character + 26;
+        }
+        if(character == 32){
+                character = ' ';
+        }
+        message [i] = character; 
+    }   
+    printf("Possible decryption: %s\n", message);
+
+    for(i = 0; message[i] != '\0'; i++){
+		character = message[i];
+    
+        if(character >= 'a' && character <= 'z'){ 
+		    character = character - 32; 
+        }
+        if(character != 32){
+            character = character - 1;
+        }
+        if(character < 'A' && character != 32){
+                character = character + 26;
+        }
+        if(character == 32){
+                character = ' ';
+        }
+        message [i] = character; 
+    }   
+    printf("Possible decryption: %s\n", message);
+
+	for(i = 0; message[i] != '\0'; i++){
+		character = message[i];
+    
+        if(character >= 'a' && character <= 'z'){ 
+		    character = character - 32; 
+        }
+        if(character != 32){
+            character = character - 1;
+        }
+        if(character < 'A' && character != 32){
+                character = character + 26;
+        }
+        if(character == 32){
+                character = ' ';
+        }
+        message [i] = character; 
+    }   
+    printf("Possible decryption: %s\n", message);  
+    
 }
 
-
-	      
- 

@@ -130,35 +130,49 @@ int main() {
     /***********************************************************************************/
     // Case 'a': Function for encryptRK() 
     
-    void encryptRK(char *message, int rKey){
-        
-    char character;
-	int i;
+    void encryptRK(char *message, int rKey){ // This is the function definition and begins by restating the prototype then opening braces 
+    /* This function does not need a return value since the message is stored in the memory location after 
+    encryption, meaning the return data type is void. The function name is encryptRK, with the R standing
+    for rotation, and the K indicating there is a key. The arguments that the function takes in are the 
+    message and the key. The message is a string of letters (array of type char) and since message was 
+    declared in main when the user inputs their message, a pointer (denoted by a *) is used infront of the
+    variable name to instruct the function to change data in that memory location. The rotation key is a 
+    whole number between 0 and 25 so it is of integer data type. */
+    
+    char character; // A char is declared called character so that the function can process individual letters rather than the whole message at once
+	int i; // A integer is declared called i to be used as a counter in the FOR loop to cycle through each individual character in chronological order
 	
+	/* This FOR loop is initialised with the format of (initialisation; condition; increment) 
+	To start at the first character of the message, the counter must start at zero (initialisation)
+	As long as the message continues to exist, all characters should have the rotation key function
+	executed, meaning that the condition is that while the message is not equal to zero. The Boolean != 
+	symbol is used and '\0' is used to denote NULL which is the last value stored in string memory. As
+	long as the message does not each NULL, the function will continue to execute. The increment means
+	that one will be added to the counter each time the loop executes to move to the next character.*/
 	for(i = 0; message[i] != '\0'; ++i){
-		character = message[i];
+		character = message[i]; // The [i] element of message (value of i in each loop) is stored in the variable character for the function to be executed on 
 	    
-		if(character >= 'a' && character <= 'z'){
-		    character = character - 32;
-		    character = character + rKey;
+		if(character >= 'a' && character <= 'z'){ // This IF statement is used to detect if the message entered is in lowercase text 
+		    character = character - 32; // If this is true, 32 is subtracted from the lowercase ASCII value of the letter to convert it to its uppercase version. This new ASCII value is then assigned to the variable character.
+		    character = character + rKey; // Once the uppercase ASCII value is stored, the value of the key is added to the character
 			
-			if(character > 'Z'){
-				character = character - 26;
+			if(character > 'Z'){ // If after executing this addition, the ASCII value of character is greater than Z, it will match to a symbol rather than a letter which will not be readable
+				character = character - 26; // If this is true, 26 will be subracted from the ASCII value so that it can be matched to the correct uppercase letter in the alphabet
 			}
 		}
 			
-		else if(character >= 'A' && character <= 'Z'){
-			character = (character + rKey);
+		else if(character >= 'A' && character <= 'Z'){ // If the message is entered as an uppercase string, the ASCII values are already in the correct form so need to be treated differently from the lowercase values, meaning a seperate IF statement
+			character = (character + rKey); // The key can be added straight to these values and stored in the variable character 
 			
-		      if(character > 'Z'){
-				character = character - 26;
+		      if(character > 'Z'){ // If after executing this addition, the ASCII value of character is greater than Z, it will match to a symbol rather than a letter which will not be readable
+				character = character - 26; // If this is true, 26 will be subracted from the ASCII value so that it can be matched to the correct uppercase letter in the alphabet
 			   }
 	    }
 
-			message[i] = character;
+			message[i] = character; // Once the value of character is calculated wiht the rotation key added, this is then stored back in the corresponding string memory address of where it was taken, replacing the character in the string with its encrypted version
     }
 
-	return 0;
+	return 0; // Once this FOR loop has executed until reaching NULL in the message, all characters will have been replaced with their encrypted version so the function has been completed and can return to its position where called in main to resume flow control and print the result
     }
 
 

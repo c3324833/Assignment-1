@@ -222,7 +222,17 @@ void decryptRK(char *message, int rKey){
 
 /******************************************************************************************/
 // Case 'c': Function for encryptSK()
-    
+
+/*  This function also does does not need a return value as explained previously, meaning the return 
+    data type is void. The function name is encryptSK, with the S now standing for substitution and the 
+    K indicating there is a key. The arguments that the function takes in are the still the message and
+    the key. The message is a string of letters (array of type char) and since message was declared in 
+    main when the user inputs their message, a pointer (denoted by a *) is used infront of the variable
+    name to instruct the function to change data in that memory location. The substitution key is also
+    now enetered as a string since the user will enter 26 letters in non-alphabetical order, making it 
+    an array of type char. Since this string was also declared in main, a pointer is used to pass it 
+    to the function. */
+
 void encryptSK(char *message, char *sKey){
         
     char character;

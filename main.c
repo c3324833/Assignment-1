@@ -500,19 +500,19 @@ void decryptR(char *message){
             if(character >= 'a' && character <= 'z'){ // The function also detects lowercase letters and converts these to uppercase by subtracting 32 from the ASCII value if necessary
 		    character = character - 32; 
             }
-            if(character != 32){ // The key is applied to any value besides spaces (ASCII value of 32) to ensure spaces are kept as is
+            if(character >= 'A' && character <= 'Z'){ // The key is applied to any value besides spaces (ASCII value of 32) to ensure spaces are kept as is
             character = character - 1; // The key is subtracted and the new value is stored in the variable character
-            }
-            if(character < 'A' && character != 32){ // If this results in an ASCII values less than 'A' this will match to a symbol, therefore 26 can be added to match to the correct letter
+                if(character < 'A' && character != 32){ // If this results in an ASCII values less than 'A' this will match to a symbol, therefore 26 can be added to match to the correct letter
                 character = character + 26;
+                }
             }
             if(character == 32){ // If the character is equal to whitespace this will be preserved so that it is still a human readable message with spaces
                 character = ' ';
             }
         message [i] = character; // The decrypted character value is then stored in the ocrresponding memory address of the message so that the encrypted letter in memory is replaced with the decrypted letter
         }   
-    printf("Possible decryption: %s\n\n", message); // The possible message is then printed for the user to read all outputs to stdout with two new space lines to seperate long messages 
-    } // The %s format specifier is used for a string 
+    printf("Possible decryption (%d): %s\n\n", j, message); // The possible message is then printed for the user to read all outputs to stdout with two new space lines to seperate long messages 
+    } // The %d format specifier is used for the variable j to indicate which key is being tested in brackets and the %s format specifier is used for a string 
 return 0;
 }
 

@@ -472,40 +472,6 @@ void decryptSK(char *message, char *sKey){
 	
     }
 
-/*******************************************************************************************************/
-// Case 'e': Function for decryptR()
-
-void decryptR(char message){
-    char character;
-	int i;
-	
-
-	for(i = 0; message[i] != '\0'; ++i){
-		character = message[i];
-		
-		if(character >= 'a' && character <= 'z'){ // This IF statement is used to detect if the message entered is in lowercase text 
-		    character = character - 32; // If this is true, 32 is subtracted from the lowercase ASCII value of the letter to convert it to its uppercase version. This new ASCII value is then assigned to the variable character.
-		    
-			if(character < 'A'){ // If this subtraction results in an ASCII value which is less than A this will not match to a letter and needs to be converted 
-				character = character + 26; // If this is true, adding 26 to the ASCII value will match it to the correct letter in the alphabet to be read
-	      }
-	   }
-
-			
-		else if(character >= 'A' && character <= 'Z'){ // If the message is entered as an uppercase string, the ASCII values are already in the correct form
-			character = (character - rKey); // If this is true, the key can be directly subtracted 
-			
-			if(character < 'A'){ // As seen above, if this subtraction does not match to a letter, 26 can be added to the ASCII value
-				character = character + 26;
-			}
-		}
-		
-		message[i] = character; // Once the value of character is calculated with the rotation key subtracted, this is then stored back in the corresponding string memory address of where it was taken, replacing the character in the string with its decrypted version
-}
-
-	return 0; // Once this FOR loop has executed until reaching NULL in the message, all characters will have been replaced with their decrypted version so the function has been completed and can return to its position where called in main to resume flow control and print the result
-}
-}
 
 /********************************************************************************************************/
 // Case 'e': Function for decryptR()
@@ -514,16 +480,27 @@ void decryptR(char *message){
     
     char character;
     int i;
+    int j = 1;
     
-    for(i = 0; message[i] != '\0'; ++i){
-		character = message[i];
+    for(j = 1; j <= 26; j++){
+        for(i = 0; message[i] != '\0'; ++i){
+		  character = message[i];
     
-        if(character >= 'a' && character <= 'z'){ // This IF statement is used to detect if the message entered is in lowercase text 
+            if(character >= 'a' && character <= 'z'){ // This IF statement is used to detect if the message entered is in lowercase text 
 		    character = character - 32; // If this is true, 32 is subtracted from the lowercase ASCII value of the letter to convert it to its uppercase version. This new ASCII value is then assigned to the variable character. 
-        }
-    
+            }
         
-    }   
+            character = character - j;
+            
+            if(character < 'A'){
+                character = character + 26;
+            }
+            message [i] = character; 
+    
+        }   
+        printf("Possible decryption: %s\n", message);
+    }
+}
 
 
 	      

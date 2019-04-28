@@ -235,20 +235,26 @@ void decryptRK(char *message, int rKey){
 
 void encryptSK(char *message, char *sKey){
         
-    char character;
+    char character; // Same character and counter initialised to encrypt each individual letter at a time
 	int i;
-	//char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+	
+	// The same FOR loop conditions are initialised to cycle through each character of the message
 	
 	for(i = 0; message[i] != '\0'; i++){
-		character = message[i];
+		character = message[i]; 
 	    
-		if(character >= 'a' && character <= 'z'){
+		if(character >= 'a' && character <= 'z'){ // If a lowercase letter is detected, this IF statement will convert the ASCII value to an uppercase by subtracting 32
 		    character = character - 32;
-			
-			if(character > 'Z'){
-				character = character - 26;
-			}
 	   }
+	   
+	   /* This switch case statement is used to replace a long series of IF statements, depending on 
+	   what letter the character is (the compiler interprets this through ASCII values). Break 
+	   statements are used ensure that only one case is executed and each character is only assigned
+	   a new value from the key once. The switch case identifies which letter of the alphabet the 
+	   character is, and depending on the position of that letter in the alphabet, it will replace
+	   the character with the key value entered at that same position in the alphabet. For example,
+	   case 'A' shows that if the character is equal to A, the A will be replaced with the first 
+	   element of the string sKey and so on.*/
 	   
 	   switch(character){
 	       case 'A': character = sKey[0];
@@ -303,14 +309,18 @@ void encryptSK(char *message, char *sKey){
 	            break;
 	       case 'Z': character = sKey[25];
 	            break;
-	       default: character = ' ';
+	       default: character = ' '; 
+	       /* The default statement will execute if the character identified in the message does not
+	       match to any of the above options. This would occur if whitespace was entered by the user
+	       and these spaces should be left as spaces to make the message readable. This default option
+	       therefore assigns a space to the varaible character if a letter is not detected. */
 	   }
 	   
-		message[i] = character;
+		message[i] = character; // Once the value of character is calculated with the matching key value replacing it, this is then stored back in the corresponding string memory address of where it was taken, replacing the character in the string with its encrypted version
 		
 		}
 
-	return 0;
+	return 0; // Once this FOR loop has executed until reaching NULL in the message, all characters will have been replaced with their encrypted version so the function has been completed and can return to its position where called in main to resume flow control and print the result
 	
     }
 

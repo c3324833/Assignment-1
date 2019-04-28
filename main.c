@@ -127,7 +127,7 @@ int main() {
 }
 
 
-    /***********************************************************************************/
+    /***************************************************************************************************/
     // Case 'a': Function for encryptRK() 
     
      /* This function does not need a return value since the message is stored in the memory location after 
@@ -179,7 +179,7 @@ int main() {
 
 
 
-/**********************************************************************************************/
+/*****************************************************************************************************/
 // Case 'b': Function for decryptRK()
 
 /* This function prototype is the same as case a, however the function name is different for decryption.
@@ -220,7 +220,7 @@ void decryptRK(char *message, int rKey){
 	return 0; // Once this FOR loop has executed until reaching NULL in the message, all characters will have been replaced with their decrypted version so the function has been completed and can return to its position where called in main to resume flow control and print the result
 }
 
-/******************************************************************************************/
+/******************************************************************************************************/
 // Case 'c': Function for encryptSK()
 
 /*  This function also does does not need a return value as explained previously, meaning the return 
@@ -324,8 +324,14 @@ void encryptSK(char *message, char *sKey){
 	
     }
 
-/**************************************************************************************/
+/******************************************************************************************************/
 // Case 'd': Function for decryptSK()
+
+/* This function for decrypting a message using substitution cipher and a key is the reverse of case 'c'
+so the function prototype is identical apart from the name. It has no return value and also uses pointers
+from main to pass the strings of message ans sKey to the function which are the arguments. They are both 
+strings so are of char data type. The same variables of character and i (counter) are declared and the
+same FOR loop specification are used to execute the function. */
 
 void decryptSK(char *message, char *sKey){
     
@@ -335,17 +341,22 @@ void decryptSK(char *message, char *sKey){
 	for(i = 0; message[i] != '\0'; ++i){
 		character = message[i];
 		
-		if(character >= 'a' && character <= 'z'){
+		if(character >= 'a' && character <= 'z'){ // This IF statement again converts lowercase letter to uppercase letters by subracting 32
 		    character = character - 32;
         }
 
-		
-		if(character < 'A' && character != 32){
-				character = character + 26;
-        }
-        
-        
-    
+
+        /* The following set of IF... ELSE IF statements are used in a similar way to the switch case in
+        case 'c' as they execute one possible option depending on the value of character. A switch case
+        would not have worked as easily in this scenario since it is dependent on the value of character
+        being an integer data type. For decrypting below, it is testing which position in the string 
+        the character is equal to and with this being an array, a switch case does not work. A series of
+        IF... ELSE IF statements can be used instead. This tests which value of the substitution key the
+        character is equal to and then assigns the corresponding letter of the alphabet to the variable
+        character. Using ELSE IF ensures that only one option is executed since IF statements alone could
+        allow a value to be assigned to the variable character, and this value could then match another 
+        value of sKey and get replaced again. */
+       
         if(character == sKey[0]){
             character = 'A';
         }
@@ -450,15 +461,11 @@ void decryptSK(char *message, char *sKey){
             character = 'Z';
         }
         
-        /*else if(character == 32){
-            character = ' ';
-        }*/
-        
-		message[i] = character;
+		message[i] = character; // This value of character is then stored back in the corresponding element of the message 
 		
 	}
 
-	return 0;
+	return 0; // This function quits after all characters have been decrypted and continues normal flow control in main where the result is printed
 	
     }
 

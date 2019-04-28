@@ -20,8 +20,8 @@ void encryptRK(char *message, int rKey); // Function prototype for encypting a r
 void decryptRK(char *message, int rKey); // Function prototype for decrypting a rotation cipher with key
 void encryptSK(char *message, char *sKey); // Function prototype for encrypting a substitution cipher with key given
 void decryptSK(char *message, char *sKey); // Function prototype for decrypting a substitution cipher with key given 
-/*void decryptR(char character); // Function prototype for decrypting a rotation cipher without key
-void decryptS(char character);*/ // Function prototype for decrypting a substitution cipher without key
+void decryptR(char *message); // Function prototype for decrypting a rotation cipher without key
+/*void decryptS(char character);*/ // Function prototype for decrypting a substitution cipher without key
 
 
 int main() {
@@ -105,13 +105,16 @@ int main() {
                 
                 break;
                 
-            /*case 'e': 
-                decryptR(character);
-                printf("Encrypted ")
+            case 'e': 
+                decryptR(message);
+                //printf("Decrypted message: %s\n", message);
                 
                 break;
                 
-            case 'f': decryptS(character); 
+            /*case 'f': 
+                decryptS(message); 
+                printf("Decrypted message: %s\n", message);
+                
                 break;*/
                 
             default: printf("Unknown option %c\nPlease enter a, b, c, d, e or f\n"); 
@@ -468,6 +471,60 @@ void decryptSK(char *message, char *sKey){
 	return 0; // This function quits after all characters have been decrypted and continues normal flow control in main where the result is printed
 	
     }
+
+/*******************************************************************************************************/
+// Case 'e': Function for decryptR()
+
+void decryptR(char message){
+    char character;
+	int i;
+	
+
+	for(i = 0; message[i] != '\0'; ++i){
+		character = message[i];
+		
+		if(character >= 'a' && character <= 'z'){ // This IF statement is used to detect if the message entered is in lowercase text 
+		    character = character - 32; // If this is true, 32 is subtracted from the lowercase ASCII value of the letter to convert it to its uppercase version. This new ASCII value is then assigned to the variable character.
+		    
+			if(character < 'A'){ // If this subtraction results in an ASCII value which is less than A this will not match to a letter and needs to be converted 
+				character = character + 26; // If this is true, adding 26 to the ASCII value will match it to the correct letter in the alphabet to be read
+	      }
+	   }
+
+			
+		else if(character >= 'A' && character <= 'Z'){ // If the message is entered as an uppercase string, the ASCII values are already in the correct form
+			character = (character - rKey); // If this is true, the key can be directly subtracted 
+			
+			if(character < 'A'){ // As seen above, if this subtraction does not match to a letter, 26 can be added to the ASCII value
+				character = character + 26;
+			}
+		}
+		
+		message[i] = character; // Once the value of character is calculated with the rotation key subtracted, this is then stored back in the corresponding string memory address of where it was taken, replacing the character in the string with its decrypted version
+}
+
+	return 0; // Once this FOR loop has executed until reaching NULL in the message, all characters will have been replaced with their decrypted version so the function has been completed and can return to its position where called in main to resume flow control and print the result
+}
+}
+
+/********************************************************************************************************/
+// Case 'e': Function for decryptR()
+
+void decryptR(char *message){
+    
+    char character;
+    int i;
+    
+    for(i = 0; message[i] != '\0'; ++i){
+		character = message[i];
+    
+        if(character >= 'a' && character <= 'z'){ // This IF statement is used to detect if the message entered is in lowercase text 
+		    character = character - 32; // If this is true, 32 is subtracted from the lowercase ASCII value of the letter to convert it to its uppercase version. This new ASCII value is then assigned to the variable character. 
+        }
+    
+        
+    }   
+
 
 	      
  
